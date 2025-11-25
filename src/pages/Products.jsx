@@ -1,3 +1,4 @@
+import ProductCard from "../components/ProductCard";
 import { useAllProducts } from "../hooks/useProductQuery";
 
 export default function Products() {
@@ -7,9 +8,9 @@ export default function Products() {
   if (isError) return <h1>Could not load products, error: {error}</h1>;
 
   return (
-    <div className="productContainer">
+    <div className="productList">
       {data.map((product) => (
-        <p key={product.id}>{product.title}</p>
+        <ProductCard key={product.id} {...product} />
       ))}
     </div>
   );
