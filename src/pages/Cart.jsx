@@ -1,7 +1,13 @@
+import ProductCard from "../components/ProductCard";
+import { useCart } from "../context/CartContext";
+
 export default function Cart() {
+  const { cart } = useCart();
   return (
-    <>
-      <h1>Cart</h1>
-    </>
+    <div>
+      {cart.map((product) => (
+        <ProductCard key={product.id} {...product} />
+      ))}
+    </div>
   );
 }
