@@ -45,7 +45,7 @@ export default function CartProvider({ children }) {
         i.id === id ? { ...i, inCart: quantity } : i
       );
       /// return all elements where quetity is larger than 0
-      return updated.filter((i) => i.incart > 0);
+      return updated.filter((i) => i.inCart > 0);
     });
   };
 

@@ -2,18 +2,25 @@ import { useState } from "react";
 import { useCart } from "../context/CartContext";
 
 export default function CartButton(props) {
-  const { inCart } = props;
-  const { addToCart } = useCart();
+  const { inCart, id } = props;
+  const { addToCart, updateQuantity } = useCart();
   const [amount, setAmount] = useState(inCart);
 
   /// CARDS THAT RENDERS IN CART
   if (inCart)
     return (
       <input
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
+        className="numberInput"
         type="number"
         min={1}
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        onBlur={() => updateQuantity(id, amount)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.target.blur();
+          }
+        }}
       />
     );
 
