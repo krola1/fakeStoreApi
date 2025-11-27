@@ -14,6 +14,10 @@ export default function CartButton(props) {
         type="number"
         min={1}
         value={amount}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
         onChange={(e) => setAmount(e.target.value)}
         onBlur={() => updateQuantity(id, amount)}
         onKeyDown={(e) => {
@@ -26,5 +30,15 @@ export default function CartButton(props) {
 
   /// CARDS THAT RENDERS IN PRODUCTS
   if (!inCart)
-    return <button onClick={() => addToCart(props)}>Add to cart</button>;
+    return (
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          addToCart(props);
+        }}
+      >
+        Add to cart
+      </button>
+    );
 }

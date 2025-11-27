@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAllProducts } from "../hooks/useProductQuery";
+import { Link } from "react-router-dom";
 export default function Home() {
   const { data } = useAllProducts();
   const [index, setIndex] = useState(0);
@@ -25,16 +26,18 @@ export default function Home() {
 
   return (
     <div className="topProductWrapper">
-      <div className="topProductCard">
-        <h3 className="topProductTitle">{product.title}</h3>
+      <Link to={`/products/${product.id}`} className="cardLink">
+        <div className="topProductCard">
+          <h3 className="topProductTitle">{product.title}</h3>
 
-        <div className="topProductImageWrapper">
-          <img src={product.image} alt={product.title} />
+          <div className="topProductImageWrapper">
+            <img src={product.image} alt={product.title} />
+          </div>
+
+          <p className="topProductPrice">${product.price}</p>
+          <p className="topProductRating">⭐ {product.rating.rate}</p>
         </div>
-
-        <p className="topProductPrice">${product.price}</p>
-        <p className="topProductRating">⭐ {product.rating.rate}</p>
-      </div>
+      </Link>
     </div>
   );
 }
