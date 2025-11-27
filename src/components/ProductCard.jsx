@@ -1,4 +1,5 @@
 import { useCart } from "../context/CartContext";
+import CartButton from "./CartButton";
 
 export default function ProductCard(props) {
   const { title, image, price, inCart, id } = props;
@@ -13,11 +14,7 @@ export default function ProductCard(props) {
       )}
       <h3>{title}</h3> <p>${price}</p>
       <img src={image} alt={title} />
-      {inCart ? (
-        <button>Remove From cart{inCart}</button>
-      ) : (
-        <button onClick={() => addToCart(props)}>Add to cart</button>
-      )}
+      <CartButton {...props} />
     </div>
   );
 }
