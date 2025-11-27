@@ -2,7 +2,7 @@ import { useCart } from "../context/CartContext";
 import CartButton from "./CartButton";
 
 export default function ProductCard(props) {
-  const { title, image, price, inCart, id } = props;
+  const { title, image, price, inCart, id, rating } = props;
   const { addToCart, removeFromCart } = useCart();
 
   return (
@@ -15,6 +15,7 @@ export default function ProductCard(props) {
       <h3>{title}</h3> <p>${price}</p>
       <img src={image} alt={title} />
       <CartButton {...props} />
+      <p>{rating.rate}</p>
     </div>
   );
 }
