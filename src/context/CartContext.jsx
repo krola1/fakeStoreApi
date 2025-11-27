@@ -10,7 +10,17 @@ export default function CartProvider({ children }) {
 
   const addToCart = (item) => {
     setCart((prev) => {
-      return [...prev, { ...item, inCart: 1 }];
+      const existing = prev.find((i) => i.id === item.id);
+
+      /// first check existing
+      return existing
+        ? //if true run map
+          prev.map((i) =>
+            //map checks if id matches. if match incart = incart +1, if not return i
+            i.id === item.id ? { ...i, inCart: i.inCart + 1 } : i
+          )
+        : ///default return if existing is false, add to list, add incart =1
+          [...prev, { ...item, inCart: 1 }];
     });
   };
 
