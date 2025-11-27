@@ -16,4 +16,4 @@ const useProductDetails = (id) => {
   });
 };
 
-export { useAllProducts };
+export { useAllProducts, useProductDetails };
