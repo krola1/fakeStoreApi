@@ -33,7 +33,23 @@ export default function CartProvider({ children }) {
     });
   };
 
-  const providerObject = { cart, addToCart, removeFromCart };
+  ///-- UPDATES QUANTITY------
+  const updateQuantity = (id, quantity) => {
+    setCart((prev) => {
+      // check if item is in cart
+      const existing = prev.find((i) => i.id === id);
+      // if not in cart retun null
+      if (!existing) return null;
+      // Find item with correct id, and   set incart === quantity
+      const updated = prev.map((i) =>
+        i.id === id ? { ...i, inCart: quantity } : i
+      );
+      /// return all elements where quetity is larger than 0
+      return updated.filter((i) => i.incart > 0);
+    });
+  };
+
+  const providerObject = { cart, addToCart, removeFromCart, updateQuantity };
   return (
     <CartContext.Provider value={providerObject}>
       {children}
